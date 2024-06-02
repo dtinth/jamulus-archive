@@ -47,3 +47,12 @@ WHERE hours_seen < 16 -- If connected more than 16 hours per day, most likely bo
 GROUP BY client_name
 ORDER BY hours_seen DESC
 ```
+
+## Architecture
+
+This system diagram illustrates the automated workflow for fetching, storing, and processing Jamulus server and client lists, and subsequently loading the processed data into Google BigQuery for querying by users. The process is orchestrated using various cloud services and automation tools.
+
+Every 2 minutes, [Google Cloud Scheduler](https://cloud.google.com/scheduler) triggers [services](https://github.com/dtinth/jamulus-php) to query Jamulus directory servers, saving the data as [snapshot files](https://github.com/dtinth/jamulus-php/blob/master/ARCHIVE.md#access-latest-snapshots) in [Linode Object Storage](https://www.linode.com/products/object-storage/). Daily GitHub Actions [workflow](https://github.com/dtinth/jamulus-php/blob/master/.github/workflows/consolidate.yml) handle archiving, consolidating and compressing snapshot files into [daily archives](https://github.com/dtinth/jamulus-php/blob/master/ARCHIVE.md#accessing-historical-snapshots). Another GitHub Actions [workflow](https://github.com/dtinth/jamulus-archive/blob/main/.github/workflows/etl.yml) later downloads this file, calculates the hourly statistics, and uploads them to [BigQuery](https://cloud.google.com/bigquery/). Users can query the processed data directly from BigQuery.
+
+![image](https://github.com/dtinth/jamulus-archive/assets/193136/78c9fdbe-debb-48da-9dad-0a63c1625927)
+
