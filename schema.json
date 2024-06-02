@@ -1,0 +1,75 @@
+[
+  {
+    "description": "YYYY-MM-DD",
+    "mode": "REQUIRED",
+    "name": "date",
+    "type": "STRING"
+  },
+  {
+    "description": "0-23 UTC",
+    "mode": "REQUIRED",
+    "name": "hour",
+    "type": "INTEGER"
+  },
+  {
+    "description": "fraction of an hour that this client is seen",
+    "mode": "REQUIRED",
+    "name": "hours_seen",
+    "type": "FLOAT"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "client_name",
+    "type": "STRING"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "client_country",
+    "type": "STRING"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "client_city",
+    "type": "STRING"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "client_instrument",
+    "type": "STRING"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "client_skill",
+    "type": "STRING"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "server_name",
+    "type": "STRING"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "server_country",
+    "type": "STRING"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "server_city",
+    "type": "STRING"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "server_ip",
+    "type": "STRING"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "server_port",
+    "type": "STRING"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "server_directory_name",
+    "type": "STRING"
+  }
+]
