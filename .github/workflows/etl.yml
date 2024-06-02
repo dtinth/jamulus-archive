@@ -17,7 +17,7 @@ jobs:
         with:
           create_credentials_file: "true"
           workload_identity_provider: "https://iam.googleapis.com/projects/1061748385198/locations/global/workloadIdentityPools/github-actions/providers/github-actions"
-          service_account: "jamulus-archive"
+          service_account: "jamulus-archive@dtinth-storage-space.iam.gserviceaccount.com"
       - id: "gcloud"
         name: "gcloud"
         run: |-
