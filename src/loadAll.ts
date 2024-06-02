@@ -1,6 +1,6 @@
 import { $ } from "bun";
 
-let date = new Date("2023-08-01T00:00:00Z");
+let date = new Date(Date.now() - 7 * 24 * 3600e3);
 const today = new Date(Date.now() - 12 * 3600e3);
 while (date < today) {
   const dateString = date.toISOString().slice(0, 10);
