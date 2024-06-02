@@ -1,6 +1,8 @@
 import { $ } from "bun";
 
 let date = new Date(Date.now() - 7 * 24 * 3600e3);
+date.setUTCHours(0, 0, 0, 0);
+
 const today = new Date(Date.now() - 12 * 3600e3);
 while (date < today) {
   const dateString = date.toISOString().slice(0, 10);
