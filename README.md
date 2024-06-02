@@ -48,24 +48,26 @@ GROUP BY client_name
 ORDER BY hours_seen DESC
 ```
 
-## Available Columns
+## Data model
 
-Before diving into the data, it's important to understand the structure of the dataset. Each row in the dataset corresponds to a single Jamulus client in a single Jamulus server in a given date and hour. Here are the columns available in the dataset:
+Each row in the table corresponds to a single Jamulus client in a single Jamulus server in a given date and hour. Here are the columns available in the dataset:
 
-- `date`: YYYY-MM-DD
-- `hour`: 0-23 UTC
-- `hours_seen`: fraction of an hour that this client is seen
-- `client_name`
-- `client_country`
-- `client_city`
-- `client_instrument`
-- `client_skill`
-- `server_name`
-- `server_country`
-- `server_city`
-- `server_ip`
-- `server_port`
-- `server_directory_name`
+- `date`: The date associated with this row. Format is `YYYY-MM-DD`.
+- `hour`: Number between 0 and 23, representing the hour of the day in UTC. For example, 0 represents midnight to 1 AM UTC.
+- `hours_seen`: Fraction of an hour that this client is seen. For example, if a given client is seen for 30 minutes inside a given server in a given hour, this value would be `0.5`.
+- Client information:
+  - `client_name`
+  - `client_country`
+  - `client_city`
+  - `client_instrument`
+  - `client_skill`
+- Server information:
+  - `server_name`
+  - `server_country`
+  - `server_city`
+  - `server_ip`
+  - `server_port`
+  - `server_directory_name`
 
 ## Architecture
 
@@ -74,4 +76,3 @@ This system diagram illustrates the automated workflow for fetching, storing, an
 Every 2 minutes, [Google Cloud Scheduler](https://cloud.google.com/scheduler) triggers [services](https://github.com/dtinth/jamulus-php) to query Jamulus directory servers, saving the data as [snapshot files](https://github.com/dtinth/jamulus-php/blob/master/ARCHIVE.md#access-latest-snapshots) in [Linode Object Storage](https://www.linode.com/products/object-storage/). Daily GitHub Actions [workflow](https://github.com/dtinth/jamulus-php/blob/master/.github/workflows/consolidate.yml) handle archiving, consolidating and compressing snapshot files into [daily archives](https://github.com/dtinth/jamulus-php/blob/master/ARCHIVE.md#accessing-historical-snapshots). Another GitHub Actions [workflow](https://github.com/dtinth/jamulus-archive/blob/main/.github/workflows/etl.yml) later downloads this file, calculates the hourly statistics, and uploads them to [BigQuery](https://cloud.google.com/bigquery/). Users can query the processed data directly from BigQuery.
 
 ![image](https://github.com/dtinth/jamulus-archive/assets/193136/78c9fdbe-debb-48da-9dad-0a63c1625927)
-
