@@ -16,7 +16,7 @@ jobs:
         uses: "google-github-actions/auth@v2"
         with:
           project_id: "dtinth-storage-space"
-          workload_identity_provider: "https://iam.googleapis.com/projects/1061748385198/locations/global/workloadIdentityPools/github-actions/providers/github-actions"
+          workload_identity_provider: "projects/1061748385198/locations/global/workloadIdentityPools/github-actions/providers/github-actions"
           service_account: "jamulus-archive@dtinth-storage-space.iam.gserviceaccount.com"
       - id: "gcloud"
         name: "gcloud"
