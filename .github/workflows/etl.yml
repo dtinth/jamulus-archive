@@ -21,8 +21,8 @@ jobs:
       - id: "gcloud"
         name: "gcloud"
         run: |-
-          gcloud config set project dtinth-storage-space
           gcloud auth login --brief --cred-file="${{ steps.auth.outputs.credentials_file_path }}"
+          gcloud config set project dtinth-storage-space
           gcloud services list
       - uses: oven-sh/setup-bun@v1
         with:
