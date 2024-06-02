@@ -6,7 +6,7 @@ while (date < today) {
   const dateString = date.toISOString().slice(0, 10);
   console.log(`::group::Loading data for ${dateString}`);
   try {
-    await $`node src/load.js ${dateString}`;
+    await $`node src/load.ts ${dateString}`;
   } catch (error) {
     console.error(error);
   }
