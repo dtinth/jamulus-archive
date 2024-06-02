@@ -2,6 +2,19 @@
 
 This project maintains an archive of Jamulus users who have connected to public Jamulus servers. The dataset is available in BigQuery at `dtinth-storage-space.jamulus.clients`.
 
+## Getting Started with BigQuery
+
+To query the Jamulus User Public Dataset using BigQuery, follow these steps:
+
+1. Visit the [Google Cloud Console](https://console.cloud.google.com/).
+2. Create a new project or select an existing project.
+3. Navigate to the BigQuery service.
+4. Use the BigQuery web UI to write and execute your SQL queries.
+
+You can find more detailed instructions and examples in the [BigQuery documentation](https://cloud.google.com/bigquery/docs).
+
+BigQuery offers a free quota that allows you to query up to 1 TB of data per month for free. This makes it easy to explore and analyze the Jamulus User Public Dataset without any cost. Additionally, you can try BigQuery without needing a credit card for the free quota.
+
 ## Example queries
 
 Query the date range of the dataset:
