@@ -48,6 +48,25 @@ GROUP BY client_name
 ORDER BY hours_seen DESC
 ```
 
+## Available Columns
+
+Before diving into the data, it's important to understand the structure of the dataset. Each row in the dataset corresponds to a single Jamulus client in a single Jamulus server in a given date and hour. Here are the columns available in the dataset:
+
+- `date`: YYYY-MM-DD
+- `hour`: 0-23 UTC
+- `hours_seen`: fraction of an hour that this client is seen
+- `client_name`
+- `client_country`
+- `client_city`
+- `client_instrument`
+- `client_skill`
+- `server_name`
+- `server_country`
+- `server_city`
+- `server_ip`
+- `server_port`
+- `server_directory_name`
+
 ## Architecture
 
 This system diagram illustrates the automated workflow for fetching, storing, and processing Jamulus server and client lists, and subsequently loading the processed data into Google BigQuery for querying by users. The process is orchestrated using various cloud services and automation tools.
