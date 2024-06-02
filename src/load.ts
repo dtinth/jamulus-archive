@@ -1,4 +1,6 @@
 import { BigQuery } from "@google-cloud/bigquery";
+import { $ } from "bun";
+import { existsSync } from "fs";
 const bigquery = new BigQuery();
 
 const clientsTable = bigquery.dataset("jamulus").table("clients");
@@ -18,7 +20,18 @@ if (existResults[0].exists) {
   process.exit(0);
 }
 
-console.log(`Loading data for ${date} into BigQuery`);
+if (!existsSync(clientFilePath)) {
+  const inputFilePath = `in.local/${date}.ndjson.br`;
+  if (!existsSync(inputFilePath)) {
+    const month = date.slice(0, 7);
+    console.log(`>>> Downloading data for ${date}`);
+    await $`wget https://jamulus-archive.ap-south-1.linodeobjects.com/main/daily/${month}/${date}.ndjson.br -O ${inputFilePath}`;
+  }
+  console.log(`>>> Generating data for ${date}`);
+  await $`bun src/generate.ts ${date}`;
+}
+
+console.log(`>>> Loading data for ${date} into BigQuery`);
 const result = await clientsTable.load(clientFilePath, {
   clustering: { fields: ["date"] },
   sourceFormat: "NEWLINE_DELIMITED_JSON",
