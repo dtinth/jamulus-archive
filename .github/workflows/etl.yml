@@ -25,4 +25,4 @@ jobs:
         with:
           bun-version: 1.1.12
       - run: bun install
-      - run: bun src/load.ts 2023-08-07
+      - run: bun src/loadAll.ts
