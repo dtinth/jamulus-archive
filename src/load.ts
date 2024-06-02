@@ -21,6 +21,8 @@ if (existResults[0].exists) {
 }
 
 if (!existsSync(clientFilePath)) {
+  await $`mkdir -p in.local`;
+  await $`mkdir -p out.local`;
   const inputFilePath = `in.local/${date}.ndjson.br`;
   if (!existsSync(inputFilePath)) {
     const month = date.slice(0, 7);
