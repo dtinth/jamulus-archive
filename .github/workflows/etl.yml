@@ -9,6 +9,8 @@ jobs:
       id-token: write
       contents: read
     runs-on: ubuntu-latest
+    env:
+      GOOGLE_CLOUD_PROJECT: dtinth-storage-space
     steps:
       - uses: actions/checkout@v4
       - id: "auth"
@@ -21,7 +23,7 @@ jobs:
       - id: "gcloud"
         name: "gcloud"
         run: |-
-          gcloud auth login --brief --cred-file="${{ steps.auth.outputs.credentials_file_path }}" --project=dtinth-storage-space
+          gcloud auth login --brief --cred-file="${{ steps.auth.outputs.credentials_file_path }}"
           gcloud services list
       - uses: oven-sh/setup-bun@v1
         with:
