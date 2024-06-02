@@ -69,6 +69,29 @@ Each row in the table corresponds to a single Jamulus client in a single Jamulus
   - `server_port`
   - `server_directory_name`
 
+For example, let's look at this row:
+
+```json
+{
+  "date": "2024-05-03",
+  "hour": "16",
+  "hours_seen": "0.36",
+  "client_name": "dtinth",
+  "client_country": "Thailand",
+  "client_city": "Bangkok",
+  "client_instrument": "Keyboard",
+  "client_skill": "Beginner",
+  "server_name": "🏘 MJTH.live",
+  "server_country": "Thailand",
+  "server_city": "Z.com Cloud, BKK",
+  "server_ip": "150.95.25.226",
+  "server_port": "22124",
+  "server_directory_name": "Any Genre 1"
+}
+```
+
+It means that on May 3, 2024, I (dtinth) connected to the server "🏘 MJTH.live" for 22 minutes between 4 PM and 5 PM UTC.
+
 ## Architecture
 
 This system diagram illustrates the automated workflow for fetching, storing, and processing Jamulus server and client lists, and subsequently loading the processed data into Google BigQuery for querying by users. The process is orchestrated using various cloud services and automation tools.
