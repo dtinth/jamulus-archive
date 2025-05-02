@@ -7,7 +7,7 @@ jobs:
   etl:
     permissions:
       id-token: write
-      contents: read
+      contents: write
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -26,3 +26,12 @@ jobs:
           bun-version: 1.1.12
       - run: bun install
       - run: bun src/loadAll.ts
+      - name: "Generate stats"
+        run: bun src/generateStats.ts
+      - name: "Commit changes"
+        run: |
+          git config user.name 'dtinth-bot'
+          git config user.email 'dtinth-bot@users.noreply.github.com'
+          git add STATS.md
+          git diff --staged --quiet || git commit -m "Update statistics [skip ci]"
+          git push
