@@ -1,7 +1,7 @@
 # Jamulus Usage Dataset Statistics
 
-Updated: 2025-05-02
+Updated: 2025-05-03
 
 ## Dataset Size
-- **Number of rows**: 1,372,792
-- **Total logical bytes**: 184.53 MB (193,490,933 bytes)
+- **Number of rows**: 1,374,625
+- **Total logical bytes**: 184.77 MB (193,747,473 bytes)
